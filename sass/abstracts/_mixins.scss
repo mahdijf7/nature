@@ -1,0 +1,38 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin centerElement {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// media query manager
+/*
+0 - 600px;     phone
+600 - 900px;   tablet portrate
+900 - 1200px;   tablet landscape
+1200 - 1800px;   desktop normal
+1800px +  big desktop
+*/
+
+@mixin respond($device) {
+  @if $device == phone {
+    @media (max-width: 37.5em) {@content};  //600px
+  }
+  @if $device == tablet-po {
+    @media (max-width: 56.25em) {@content};   //900px
+  }
+  @if $device == tablet-la {
+    @media (max-width: 75em) {@content};  //1200px
+  }
+  @if $device == desktop-big {
+    @media (min-width: 112.5em) {@content};  //1800px
+  }
+}
